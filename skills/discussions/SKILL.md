@@ -2,7 +2,7 @@
 name: discussions
 description: Post to, reply to, or render markdown-based discussion threads stored in a repo's `.discussions/` directory. Use when the user asks to start a topic, reply to a thread, render a discussion as a flat or threaded view, list active topics, initialize discussions in a repo, or interact with file-per-post async conversations in a git repository.
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Discussions skill
@@ -63,7 +63,7 @@ If the repo has no `.discussions/` directory:
 
 - When the user asks about prior discussion, render a flat view first, then summarize.
 - For replying to a specific point in a longer post, use `>` blockquote — not a separate annotation.
-- Link artifacts (diffs, long docs) by relative path; don't inline them.
+- References: use a path relative to the post file for anything in the same repo (other discussions, code, docs); use a full URL for anything outside the repo. Never use a relative path that escapes the repo — it breaks for anyone whose local layout differs. Don't inline full artifacts; link them.
 - Don't generate or commit human-readable rendered indexes — they drift. Render on demand.
 
 ## See also
