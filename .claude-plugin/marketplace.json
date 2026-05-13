@@ -1,0 +1,14 @@
+{
+  "name": "cnslabs",
+  "owner": {
+    "name": "CNS Labs"
+  },
+  "plugins": [
+    {
+      "name": "discussions",
+      "source": "./",
+      "description": "File-per-post async discussion threads in a git repo. Post, reply, render, and manage topics in a `.discussions/` directory using the repo-discussions protocol.",
+      "version": "0.1.0"
+    }
+  ]
+}
