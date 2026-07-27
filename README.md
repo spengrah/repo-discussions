@@ -20,16 +20,16 @@ The dot-prefix is deliberate: discussions are *about* the repo's primary content
 **Claude Code (plugin marketplace — recommended):**
 
 ```
-/plugin marketplace add spengrah/repo-discussions
-/plugin install discussions@spengrah
+/plugin marketplace add spengrah-repo-discussions/repo-discussions
+/plugin install repo-discussions@spengrah-repo-discussions
 ```
 
-Auto-updates flow from the marketplace; manual refresh via `/plugin marketplace update spengrah`. Pin to a specific version by tracking the `version` field in `.claude-plugin/plugin.json`.
+Auto-updates flow from the marketplace; manual refresh via `/plugin marketplace update spengrah-repo-discussions`. Pin to a specific version by tracking the `version` field in `.claude-plugin/plugin.json`.
 
 **Claude Code (clone + symlink — for dev / head-tracking):**
 
 ```bash
-git clone https://github.com/spengrah/repo-discussions.git ~/.repo-discussions
+git clone https://github.com/spengrah-repo-discussions/repo-discussions.git ~/.repo-discussions
 ln -s ~/.repo-discussions/skills/discussions ~/.claude/skills/discussions
 ```
 
@@ -38,7 +38,7 @@ For project-local install, symlink into `.claude/skills/` instead.
 **Other harnesses (Codex, Cursor, Factory.ai, etc.):**
 
 ```bash
-git clone https://github.com/spengrah/repo-discussions.git ~/.repo-discussions
+git clone https://github.com/spengrah-repo-discussions/repo-discussions.git ~/.repo-discussions
 ```
 
 Then load `~/.repo-discussions/skills/discussions/SKILL.md` via the harness's skill, rule, or instruction-loading mechanism. The skill references `PROTOCOL.md` and `templates/AGENTS.md` via relative paths — both resolve after the clone.
