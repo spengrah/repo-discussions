@@ -3,8 +3,8 @@
   "description": "File-per-post async discussion threads in a git repo. Post, reply, render, and manage topics in a `.discussions/` directory using the repo-discussions protocol.",
   "version": "0.1.1",
   "author": {
-    "name": "CNS Labs"
+    "name": "spengrah"
   },
-  "homepage": "https://github.com/CNSLabs/repo-discussions",
-  "repository": "https://github.com/CNSLabs/repo-discussions.git"
+  "homepage": "https://github.com/spengrah/repo-discussions",
+  "repository": "https://github.com/spengrah/repo-discussions.git"
 }

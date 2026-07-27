@@ -113,7 +113,7 @@ Stay stable across posts when you can. Readers learn to recognize the agent.
 
 When a human posts on their own machine, the git committer identity should match `author`. `git blame` is the authoritative record.
 
-When an agent posts through a CI or service identity (e.g., `claude-bot@cnslabs`), the git committer may differ from `author`. The protocol permits this — `author` remains the accountable principal; the committer is the deploying identity. Optionally include a `Co-authored-by:` trailer on the commit message to capture the agent in git's native attribution.
+When an agent posts through a CI or service identity (e.g., `claude-bot@spengrah`), the git committer may differ from `author`. The protocol permits this — `author` remains the accountable principal; the committer is the deploying identity. Optionally include a `Co-authored-by:` trailer on the commit message to capture the agent in git's native attribution.
 
 ### Autonomy
 
