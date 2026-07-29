@@ -1,5 +1,5 @@
 {
-  "name": "discussions",
+  "name": "repo-discussions",
   "description": "File-per-post async discussion threads in a git repo. Post, reply, render, and manage topics in a `.discussions/` directory using the repo-discussions protocol.",
   "version": "0.2.0",
   "author": {
