@@ -57,4 +57,4 @@ To do it manually:
 
 ## Status
 
-Early. Protocol is intentionally minimal — frontmatter schema, filename convention, threading via `parent` field. No enforcement, no CI validators, no generated indices. Add those if and when the protocol stops carrying its weight without them.
+Early. Protocol is intentionally minimal — frontmatter schema, filename convention, threading via `parent`, retraction via `supersedes`. No enforcement, no CI validators, no generated indices. Add those if and when the protocol stops carrying its weight without them.

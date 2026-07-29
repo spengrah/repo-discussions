@@ -34,7 +34,7 @@ Example: `2026-05-13T143022-alice-a3f0.md`
 
 Regex: `^\d{4}-\d{2}-\d{2}T\d{6}-[a-z0-9-]+-[0-9a-f]{4}\.md$`
 
-Lexical sort = chronological order. The random suffix prevents collisions on same-second posts.
+Lexical sort is chronological to one-second granularity. The random suffix prevents filename collisions on same-second posts but does not preserve their relative order — within a single second, ordering is arbitrary. Generate the timestamp per post at write time, not once for a batch of posts; a reused timestamp discards ordering the suffix cannot recover. Where order matters, express it with `parent`.
 
 ## Post frontmatter
 
@@ -52,8 +52,9 @@ created: 2026-05-13T14:30:22Z           # UTC ISO-8601 with colons in this field
 Optional:
 
 ```yaml
-parent: 2026-05-13T142010-bob-b91c      # reply target; omit for top-level posts
-agent: claude-opus-4.7                  # set when an agent drafted or wrote the body
+parent: 2026-05-13T142010-bob-b91c        # reply target; omit for top-level posts
+supersedes: 2026-05-13T141500-alice-c2d1  # post this one retracts or replaces
+agent: claude-opus-4.7                    # set when an agent drafted or wrote the body
 tags: [architecture, l1]
 mentions: [bob, carol]
 ```
@@ -85,6 +86,14 @@ The `_topic.md` body may contain framing prose or be metadata-only.
 A thread is the set of all posts sharing the same `thread` value (i.e., living in the same topic directory). The `parent` chain defines a tree; absence of `parent` defines the roots.
 
 To reply to a specific passage of an ancestor, quote it inline with `>` in the body. The protocol does not support anchored span-level annotations.
+
+## Superseding
+
+`supersedes` marks a post as replacing an earlier post in the same thread — a retraction, a correction, or a decision that overrides a previous one. It is independent of `parent`: a post may reply to one post and supersede another, reply and supersede the same post, or supersede without replying.
+
+The superseded post is never edited or deleted; the pointer lives on the newer post, so git history stays intact and the original claim remains readable in context.
+
+Chains are permitted: if C supersedes B and B supersedes A, both A and B are stale. Frontends should mark superseded posts as such when rendering — the field exists so a reader scanning a thread doesn't act on a claim its author has withdrawn.
 
 ## Identity
 
@@ -146,6 +155,7 @@ These are load-bearing. Violating them breaks frontends.
 - The frontmatter `id` must match the filename stem.
 - The frontmatter `thread` must match the parent directory name.
 - A `parent` reference must point to an existing post in the same thread.
+- A `supersedes` reference must point to a different existing post in the same thread.
 
 ## Optional validation
 
@@ -156,6 +166,7 @@ A conforming validator should check:
 - `id` matches filename stem.
 - `thread` matches parent directory name.
 - `parent`, if present, references an existing post in the same thread.
+- `supersedes`, if present, references an existing post in the same thread other than itself.
 - Every topic directory has a valid `_topic.md`.
 
 A validator may additionally check that the git committer identity matches `author`, but should skip this check when `agent` is set and a recognized service identity made the commit.
